@@ -22,11 +22,11 @@ stages:
       vmImage: ubuntu-latest
     steps:
     - task: Docker@2
-      displayName: Build an image
+      displayName: Build an image and push it
       inputs:
         containerRegistry: 'acrtestlg-conn-ACR'
         repository: '$(imageRepo)'
-        command: 'build'
+        command: 'buildAndPush'
         Dockerfile: '$(Build.SourcesDirectory)/app/Dockerfile'
         tags: |
           $(tag)
