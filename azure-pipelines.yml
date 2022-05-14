@@ -69,5 +69,5 @@ stages:
         kubernetesServiceConnection: 'aks-test-lg-AKS-Conn'
         namespace: 'default'
         manifests: |
-         $(Pipeline.Workspace)/manifests/deployment.yml
-         $(Pipeline.Workspace)/manifests/deployment.yml
+          $(Pipeline.Workspace)/manifests/deployment.yml
+          $(Pipeline.Workspace)/manifests/deployment.yml
