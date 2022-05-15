@@ -30,7 +30,6 @@ stages:
         Dockerfile: '$(Build.SourcesDirectory)/app/Dockerfile'
         tags: |
           $(tag)
-          latest
     - task: PublishPipelineArtifact@1
       displayName: Publish kubernetes dir to pipeline
       inputs:
@@ -42,6 +41,7 @@ stages:
   dependsOn: Build
   variables:
    acrSecret: k8sacrauth
+   acrRepoUrl: acrtestlg.azurecr.io
   jobs: 
   - deployment: Deploy
     displayName: Deploy to AKS
@@ -73,4 +73,5 @@ stages:
               manifests: |
                 $(Pipeline.Workspace)/manifests/deployment.yml
                 $(Pipeline.Workspace)/manifests/service.yml
+              containers: '$(acrRepoUrl)/$(imageRepo):$(tag)'
               imagePullSecrets: '$(acrSecret)'
